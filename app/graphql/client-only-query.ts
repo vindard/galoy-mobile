@@ -22,11 +22,11 @@ export const loadAuthToken = async (): Promise<void> => {
 
 export const networkVar = makeVar<INetwork | null>(null)
 
-export const prefCurrencyVar = makeVar<CurrencyType>("USD")
+export const prefCurrencyVar = makeVar<CurrencyType>("TTD")
 export const modalClipboardVisibleVar = makeVar(false)
 
 export const nextPrefCurrency = (): void => {
-  const units: CurrencyType[] = ["BTC", "USD"]
+  const units: CurrencyType[] = ["BTC", "TTD"]
   const currentIndex = indexOf(units, prefCurrencyVar())
   prefCurrencyVar(units[(currentIndex + 1) % units.length])
 }

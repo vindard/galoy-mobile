@@ -15,6 +15,7 @@ import { palette } from "../../theme/palette"
 import { sameDay, sameMonth } from "../../utils/date"
 import { TRANSACTIONS_LIST } from "../../graphql/query"
 import { toastShow } from "../../utils/toast"
+import { btcEdgeToTtd, usdEdgeToTtd } from "@app/hooks/ttd"
 
 const styles = EStyleSheet.create({
   errorText: { alignSelf: "center", color: palette.red, paddingBottom: 18 },
@@ -94,10 +95,12 @@ export const TransactionHistoryScreenDataInjected: ScreenType = ({
 
   const walletCurrency = data.me.defaultAccount.wallets[0].walletCurrency
   const { edges: edgesRaw, pageInfo } = data.me.defaultAccount.wallets[0].transactions
-  const edges = edgesRaw.map((edge) => ({
-    ...edge,
-    node: { ...edge.node, walletType: walletCurrency },
-  }))
+  const edges = edgesRaw
+    .map((edge) => ({
+      ...edge,
+      node: { ...edge.node, walletType: walletCurrency },
+    }))
+    .map((edge) => (walletCurrency === "BTC" ? btcEdgeToTtd(edge) : usdEdgeToTtd(edge)))
   const lastDataCursor = edges.length > 0 ? edges[edges.length - 1].cursor : null
   let lastSeenCursor =
     transactionsRef.current.length > 0

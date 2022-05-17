@@ -93,7 +93,7 @@ const WalletOverview = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.balanceLeft}>
         <View style={styles.usdLabelContainer}>
-          <Text style={styles.usdLabelText}>USD</Text>
+          <Text style={styles.usdLabelText}>TTD</Text>
         </View>
         <TextCurrency
           view="UsdWallet"

@@ -1,6 +1,7 @@
 import useToken from "../utils/use-token"
 import { useMySubscription } from "./user-hooks"
 import useMainQuery from "./use-main-query"
+import { balancesToTtd } from "./ttd"
 
 export const useWalletBalance = (): {
   btcWalletId?: string
@@ -44,7 +45,7 @@ export const useWalletBalance = (): {
     refetchMainQuery()
   }
 
-  return {
+  return balancesToTtd({
     btcWalletId,
     btcWalletBalance,
     btcWalletValueInUsd:
@@ -54,5 +55,5 @@ export const useWalletBalance = (): {
     usdWalletId,
     usdWalletBalance,
     loading: mySubscriptionLoading,
-  }
+  })
 }

@@ -4,6 +4,7 @@ import useToken from "@app/utils/use-token"
 import NetInfo from "@react-native-community/netinfo"
 import { translateUnknown as translate } from "@galoymoney/client"
 import crashlytics from "@react-native-firebase/crashlytics"
+import { usdEdgeToTtd, btcEdgeToTtd } from "./ttd"
 
 const useMainQuery = (): useMainQueryOutput => {
   const { hasToken } = useToken()
@@ -63,23 +64,23 @@ const useMainQuery = (): useMainQueryOutput => {
   const usdWalletBalance = usdWallet?.balance
   const btcWalletId = btcWallet?.id
   const usdWalletId = usdWallet?.id
-  const btcTransactionsEdges = btcWallet?.transactions?.edges
-  const usdTransactionsEdges = usdWallet?.transactions?.edges
+  let btcTransactionsEdges = btcWallet?.transactions?.edges
+  let usdTransactionsEdges = usdWallet?.transactions?.edges
   const me = data?.me || {}
   const myPubKey = data?.globals?.nodesIds?.[0] ?? ""
   const username = data?.me?.username
   const phoneNumber = data?.me?.phone
   const mobileVersions = data?.mobileVersions
 
-  btcTransactionsEdges?.forEach((btcTransaction, index) => {
-    const tx = btcTransaction
+  btcTransactionsEdges = btcTransactionsEdges?.map((btcTransaction) => {
+    const tx = btcEdgeToTtd(btcTransaction)
     tx.node = { ...tx.node, walletType: "BTC" }
-    btcTransactionsEdges[index] = tx
+    return tx
   })
-  usdTransactionsEdges?.forEach((usdTransaction, index) => {
-    const tx = usdTransaction
+  usdTransactionsEdges = usdTransactionsEdges?.map((usdTransaction) => {
+    const tx = usdEdgeToTtd(usdTransaction)
     tx.node = { ...tx.node, walletType: "USD" }
-    usdTransactionsEdges[index] = tx
+    return tx
   })
   const mergedTransactions = btcTransactionsEdges
     ?.concat(usdTransactionsEdges)

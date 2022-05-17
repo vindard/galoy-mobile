@@ -1,4 +1,4 @@
-package com.galoyapp;
+package com.galoyappttd;
 
 import android.app.Application;
 import android.content.Context;

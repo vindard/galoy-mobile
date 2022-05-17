@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:72279297366:android:35666807ae916c5aa75af7",
         "android_client_info": {
-          "package_name": "com.galoyapp"
+          "package_name": "com.galoyappttd"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "72279297366-pm5ng6a6lrqirbi80kfgbf206uh567go.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.galoyapp",
+            "package_name": "com.galoyappttd",
             "certificate_hash": "e3fc1f6c695772c31c706eea22f66efd680c5c64"
           }
         },

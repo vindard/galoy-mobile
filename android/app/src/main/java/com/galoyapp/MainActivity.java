@@ -1,4 +1,4 @@
-package com.galoyapp;
+package com.galoyappttd;
 
 import android.os.Bundle;
 

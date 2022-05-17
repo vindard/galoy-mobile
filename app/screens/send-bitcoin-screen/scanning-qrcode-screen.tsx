@@ -184,7 +184,7 @@ export const ScanningQRCodeScreen: ScreenType = ({
       )
     } catch (err) {
       // link to issue
-      // Fatal Exception: java.lang.RuntimeException: Failure delivering result ResultInfo{who=null, request=13002, result=-1, data=Intent { dat=content://media/external/images/media/12345 flg=0x1 (has extras) }} to activity {com.galoyapp/com.galoyapp.MainActivity}: java.lang.RuntimeException: Illegal callback invocation from native module. This callback type only permits a single invocation from native code.
+      // Fatal Exception: java.lang.RuntimeException: Failure delivering result ResultInfo{who=null, request=13002, result=-1, data=Intent { dat=content://media/external/images/media/12345 flg=0x1 (has extras) }} to activity {com.galoyappttd/com.galoyappttd.MainActivity}: java.lang.RuntimeException: Illegal callback invocation from native module. This callback type only permits a single invocation from native code.
       // ??
 
       console.error(err)

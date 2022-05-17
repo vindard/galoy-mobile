@@ -265,7 +265,7 @@ export const MoveMoneyScreen: ScreenType = ({
     openInStore({
       // appName: "Bitcoin Beach Wallet",
       // appStoreId: "",
-      playStoreId: "com.galoyapp",
+      playStoreId: "com.galoyappttd",
     }).catch((err) => {
       console.debug({ err }, "error app link on link")
       // handle error

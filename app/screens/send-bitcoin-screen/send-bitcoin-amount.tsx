@@ -11,6 +11,7 @@ import SwitchIcon from "@app/assets/icons/switch.svg"
 import { translateUnknown as translate } from "@galoymoney/client"
 import NoteIcon from "@app/assets/icons/note.svg"
 import { ScrollView } from "react-native-gesture-handler"
+import { FIAT_WALLET_NAME } from "@app/hooks/ttd"
 
 const Styles = StyleSheet.create({
   sendBitcoinAmountContainer: {
@@ -274,7 +275,7 @@ const SendBitcoinAmount = ({
                       </>
                     ) : (
                       <>
-                        <Text style={Styles.walletTypeText}>US Dollar Wallet</Text>
+                        <Text style={Styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                       </>
                     )}
                   </View>
@@ -353,7 +354,7 @@ const SendBitcoinAmount = ({
                   </>
                 ) : (
                   <>
-                    <Text style={Styles.walletTypeText}>US Dollar Wallet</Text>
+                    <Text style={Styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                   </>
                 )}
               </View>

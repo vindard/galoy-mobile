@@ -10,6 +10,7 @@ import { Button } from "react-native-elements"
 import FeeIcon from "@app/assets/icons/fee.svg"
 import useFee from "./use-fee"
 import { gql, useMutation } from "@apollo/client"
+import { FIAT_WALLET_NAME } from "@app/hooks/ttd"
 
 const Status = {
   IDLE: "idle",
@@ -424,7 +425,7 @@ const SendBitcoinConfirmation = ({
               </>
             ) : (
               <>
-                <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
               </>
             )}
           </View>

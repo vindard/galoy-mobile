@@ -12,6 +12,7 @@ import { useWalletBalance } from "@app/hooks"
 import * as currencyFmt from "currency.js"
 import { MoveMoneyStackParamList } from "@app/navigation/stack-param-lists"
 import { INTRA_LEDGER_PAY } from "../send-bitcoin-screen/graphql"
+import { FIAT_WALLET_NAME } from "@app/hooks/ttd"
 
 const Status = {
   IDLE: "idle",
@@ -125,7 +126,7 @@ const TransferConfirmationScreen = ({
               </>
             ) : (
               <>
-                <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
               </>
             )}
           </View>
@@ -193,7 +194,7 @@ const TransferConfirmationScreen = ({
               </>
             ) : (
               <>
-                <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
               </>
             )}
           </View>

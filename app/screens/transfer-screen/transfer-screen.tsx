@@ -12,6 +12,7 @@ import useMainQuery from "@app/hooks/use-main-query"
 import * as currencyFmt from "currency.js"
 import { useMySubscription, useWalletBalance } from "@app/hooks"
 import SwitchButton from "@app/assets/icons/transfer.svg"
+import { FIAT_WALLET_NAME } from "@app/hooks/ttd"
 
 export const TransferScreen = ({ navigation }: TransferScreenProps) => {
   const { wallets, defaultWalletId } = useMainQuery()
@@ -211,7 +212,7 @@ export const TransferScreen = ({ navigation }: TransferScreenProps) => {
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>
@@ -288,7 +289,7 @@ export const TransferScreen = ({ navigation }: TransferScreenProps) => {
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>

@@ -1,5 +1,7 @@
 const TTD_USD_RATE = 6.8
 
+export const FIAT_WALLET_NAME = "TT Dollar Wallet"
+
 export const usdEdgeToTtd = (usdEdge) => ({
   ...usdEdge,
   node: {

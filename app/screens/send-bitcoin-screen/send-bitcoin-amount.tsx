@@ -11,7 +11,7 @@ import SwitchIcon from "@app/assets/icons/switch.svg"
 import { translateUnknown as translate } from "@galoymoney/client"
 import NoteIcon from "@app/assets/icons/note.svg"
 import { ScrollView } from "react-native-gesture-handler"
-import { FIAT_WALLET_NAME } from "@app/hooks/ttd"
+import { FIAT_WALLET_NAME, satAmountUsdToSatAmountTtd, ttdAmountToUsd } from "@app/hooks/ttd"
 
 const Styles = StyleSheet.create({
   sendBitcoinAmountContainer: {
@@ -196,7 +196,7 @@ const SendBitcoinAmount = ({
     if (amountCurrency === "USD") {
       setSatAmount(
         convertCurrencyAmount({
-          amount: satAmountInUsd,
+          amount: ttdAmountToUsd(satAmountInUsd),
           from: "USD",
           to: "BTC",
         }),
@@ -204,11 +204,11 @@ const SendBitcoinAmount = ({
     }
     if (amountCurrency === "BTC") {
       setSatAmountInUsd(
-        convertCurrencyAmount({
-          amount: satAmount,
+        parseFloat((convertCurrencyAmount({
+          amount: satAmountUsdToSatAmountTtd(satAmount),
           from: "BTC",
           to: "USD",
-        }),
+        })).toFixed(1)),
       )
     }
   }, [satAmount, satAmountInUsd, amountCurrency, convertCurrencyAmount])
@@ -438,7 +438,8 @@ const SendBitcoinAmount = ({
                   prefix="$"
                   delimiter=","
                   separator="."
-                  precision={2}
+                  precision={1}
+                  suffix="0"
                   style={Styles.walletBalanceInput}
                   minValue={0}
                   editable={amountless}

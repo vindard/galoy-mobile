@@ -1,4 +1,4 @@
-const TTD_USD_RATE = 6.8
+export const TTD_USD_RATE = 6.8
 
 export const FIAT_WALLET_NAME = "TT Dollar Wallet"
 
@@ -26,3 +26,9 @@ export const balancesToTtd = (balances) => ({
   btcWalletValueInUsd: balances.btcWalletValueInUsd * TTD_USD_RATE,
   usdWalletBalance: balances.usdWalletBalance * TTD_USD_RATE,
 })
+
+export const ttdAmountToUsd = (ttdAmount) =>
+  parseFloat((ttdAmount / TTD_USD_RATE).toFixed(2))
+
+export const satAmountUsdToSatAmountTtd = (satAmountUsd) =>
+  Math.round(satAmountUsd * TTD_USD_RATE)

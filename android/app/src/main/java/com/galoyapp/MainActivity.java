@@ -1,4 +1,4 @@
-package com.galoyapp;
+package com.btcbacchanal;
 
 import android.os.Bundle;
 

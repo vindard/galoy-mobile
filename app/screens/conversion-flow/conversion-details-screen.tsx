@@ -20,6 +20,7 @@ import { WalletDescriptor } from "@app/types/wallets"
 import { StackScreenProps } from "@react-navigation/stack"
 import { RootStackParamList } from "@app/navigation/stack-param-lists"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { FIAT_WALLET_NAME, TTD_LABEL } from "@app/utils/ttd"
 
 export const ConversionDetailsScreen = ({
   route,
@@ -174,7 +175,7 @@ export const ConversionDetailsScreen = ({
               {fromWallet.currency === WalletCurrency.BTC ? (
                 <Text style={styles.walletSelectorTypeLabelBtcText}>BTC</Text>
               ) : (
-                <Text style={styles.walletSelectorTypeLabelUsdText}>USD</Text>
+                <Text style={styles.walletSelectorTypeLabelUsdText}>{TTD_LABEL}</Text>
               )}
             </View>
           </View>
@@ -186,7 +187,7 @@ export const ConversionDetailsScreen = ({
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>
@@ -232,7 +233,7 @@ export const ConversionDetailsScreen = ({
               {toWallet.currency === WalletCurrency.BTC ? (
                 <Text style={styles.walletSelectorTypeLabelBtcText}>BTC</Text>
               ) : (
-                <Text style={styles.walletSelectorTypeLabelUsdText}>USD</Text>
+                <Text style={styles.walletSelectorTypeLabelUsdText}>{TTD_LABEL}</Text>
               )}
             </View>
           </View>
@@ -244,7 +245,7 @@ export const ConversionDetailsScreen = ({
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>

@@ -24,6 +24,7 @@ import { toastShow } from "@app/utils/toast"
 import { copyPaymentInfoToClipboard } from "@app/utils/clipboard"
 import moment from "moment"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { TTD_USD_RATE } from "@app/utils/ttd"
 
 const styles = EStyleSheet.create({
   container: {
@@ -215,13 +216,14 @@ const ReceiveUsd = () => {
           }
           setInvoice(invoice)
         } else {
+          const parseTtdFloatToUsd = (ttdAmount) => Number((parseFloat(ttdAmount) / TTD_USD_RATE).toFixed(2))
           const {
             data: {
               lnUsdInvoiceCreate: { invoice, errors },
             },
           } = await lnUsdInvoiceCreate({
             variables: {
-              input: { walletId, amount: parseFloat(usdAmount) * 100, memo },
+              input: { walletId, amount: parseTtdFloatToUsd(usdAmount) * 100, memo },
             },
           })
 

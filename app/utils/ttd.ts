@@ -1,4 +1,4 @@
-const TTD_USD_RATE = 6.8
+export const TTD_USD_RATE = 6.8
 
 export const TTD_LABEL = "TTD"
 export const FIAT_WALLET_NAME = "TT Dollar Wallet"
@@ -24,7 +24,7 @@ export const btcEdgeToTtd = (btcEdge) => ({
 
 export const balancesToTtd = (balances) => ({
   ...balances,
-  btcWalletValueInUsd: balances.btcWalletValueInUsd * TTD_USD_RATE,
+  btcWalletValueInUsd: balances.btcWalletValueInUsd,
   usdWalletBalance: balances.usdWalletBalance * TTD_USD_RATE,
 })
 

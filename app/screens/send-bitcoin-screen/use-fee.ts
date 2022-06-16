@@ -2,6 +2,7 @@ import { useMutation, useDelayedQuery } from "@galoymoney/client"
 import { useState, useEffect } from "react"
 import { WalletDescriptor } from "@app/types/wallets"
 import { PaymentAmount, WalletCurrency } from "@app/types/amounts"
+import { TTD_USD_RATE } from "@app/utils/ttd"
 
 type FeeType = {
   amount?: PaymentAmount<WalletCurrency>
@@ -106,6 +107,11 @@ const useFee = ({
               feeProbeFailed = true
             }
           }
+
+          feeValue =
+            feeValue && feeValue > 0 && walletDescriptor.currency === WalletCurrency.USD
+              ? feeValue * TTD_USD_RATE
+              : feeValue
 
           setFee({
             amount: { amount: feeValue, currency: walletDescriptor.currency },

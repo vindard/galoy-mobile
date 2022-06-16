@@ -43,7 +43,7 @@ export const CurrencyTag: FunctionComponent<CurrencyTagProps> = ({ walletType })
       <Text
         style={{ ...styles.currencyText, color: currencyStyling[walletType].textColor }}
       >
-        {walletType}
+        {walletType === "USD" ? "TTD" : walletType}
       </Text>
     </View>
   )

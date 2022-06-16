@@ -9,6 +9,8 @@ import Icon from "react-native-vector-icons/Ionicons"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useHideBalance } from "@app/hooks"
 
+import { TTD_LABEL } from "@app/utils/ttd"
+
 const styles = EStyleSheet.create({
   container: {
     display: "flex",
@@ -101,7 +103,6 @@ const styles = EStyleSheet.create({
 
 const HidableArea = ({ hidden, style, children }) => {
   const [visible, setVisible] = useState<boolean>(!hidden)
-
   return (
     <TouchableHighlight
       style={style}
@@ -174,7 +175,7 @@ const WalletOverview = ({
         </HidableArea>
 
         <View style={styles.usdLabelContainer}>
-          <Text style={styles.usdLabelText}>USD</Text>
+          <Text style={styles.usdLabelText}>{TTD_LABEL}</Text>
         </View>
       </View>
     </View>

@@ -11,6 +11,7 @@ import { palette } from "../../theme/palette"
 import type { ComponentType } from "../../types/jsx"
 import { Defs, LinearGradient, Stop } from "react-native-svg"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { TTD_USD_RATE } from "@app/utils/ttd"
 
 const BTC_PRICE_LIST = gql`
   query btcPriceList($range: PriceGraphRange!) {
@@ -130,7 +131,7 @@ export const PriceGraph: ComponentType = ({
     const startPriceData = prices[0].price
 
     price =
-      (currentPriceData.base / 10 ** currentPriceData.offset) *
+      (currentPriceData.base * TTD_USD_RATE / 10 ** currentPriceData.offset) *
       multiple(currentPriceData.currencyUnit)
     delta = currentPriceData.base / startPriceData.base - 1
     color = delta > 0 ? { color: palette.green } : { color: palette.red }
@@ -223,7 +224,7 @@ export const PriceGraph: ComponentType = ({
             }}
             data={prices.map((index) => ({
               y:
-                (index.price.base / 10 ** index.price.offset) *
+                (index.price.base * TTD_USD_RATE / 10 ** index.price.offset) *
                 multiple(index.price.currencyUnit),
             }))}
             domain={{ y: priceDomain }}

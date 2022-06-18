@@ -310,8 +310,8 @@ const ReceiveUsd = () => {
               prefix="$"
               delimiter=","
               separator="."
-              precision={2}
-              suffix=""
+              precision={1}
+              suffix="0"
               minValue={0}
               style={styles.amountInput}
               autoFocus

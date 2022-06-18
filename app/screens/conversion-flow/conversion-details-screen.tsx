@@ -20,7 +20,7 @@ import { WalletDescriptor } from "@app/types/wallets"
 import { StackScreenProps } from "@react-navigation/stack"
 import { RootStackParamList } from "@app/navigation/stack-param-lists"
 import { useI18nContext } from "@app/i18n/i18n-react"
-import { FIAT_WALLET_NAME, TTD_LABEL } from "@app/utils/ttd"
+import { applyTtdPrecision, FIAT_WALLET_NAME, TTD_LABEL } from "@app/utils/ttd"
 
 export const ConversionDetailsScreen = ({
   route,
@@ -116,7 +116,7 @@ export const ConversionDetailsScreen = ({
       setActiveCurrencyInput(WalletCurrency.BTC)
     }
     if (fromWallet.currency === WalletCurrency.USD) {
-      setAmountsWithUsd(Math.floor((usdWalletBalance * percentage) / 100))
+      setAmountsWithUsd(Math.floor(applyTtdPrecision(usdWalletBalance * percentage) / 100))
       setActiveCurrencyInput(WalletCurrency.USD)
     }
   }
@@ -294,7 +294,8 @@ export const ConversionDetailsScreen = ({
                     prefix="$"
                     delimiter=","
                     separator="."
-                    precision={2}
+                    precision={1}
+                    suffix="0"
                     editable={false}
                     style={styles.convertedAmountText}
                   />
@@ -309,7 +310,8 @@ export const ConversionDetailsScreen = ({
                     prefix="$"
                     delimiter=","
                     separator="."
-                    precision={2}
+                    precision={1}
+                    suffix="0"
                     style={styles.walletBalanceInput}
                     minValue={0}
                   />
@@ -332,7 +334,8 @@ export const ConversionDetailsScreen = ({
                 prefix="$"
                 delimiter=","
                 separator="."
-                precision={2}
+                precision={1}
+                suffix="0"
                 style={styles.walletBalanceInput}
                 minValue={0}
               />

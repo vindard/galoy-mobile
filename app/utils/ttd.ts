@@ -1,4 +1,5 @@
 export const TTD_USD_RATE = 6.8
+export const applyTtdPrecision = (amount) => Math.round(amount / 10) * 10
 
 export const TTD_LABEL = "TTD"
 export const FIAT_WALLET_NAME = "TT Dollar Wallet"
@@ -7,8 +8,8 @@ export const usdEdgeToTtd = (usdEdge) => ({
   ...usdEdge,
   node: {
     ...usdEdge.node,
-    settlementAmount: usdEdge.node.settlementAmount * TTD_USD_RATE,
-    settlementFee: usdEdge.node.settlementFee * TTD_USD_RATE,
+    settlementAmount: applyTtdPrecision(usdEdge.node.settlementAmount * TTD_USD_RATE),
+    settlementFee: applyTtdPrecision(usdEdge.node.settlementFee * TTD_USD_RATE),
   },
 })
 export const btcEdgeToTtd = (btcEdge) => ({
@@ -25,7 +26,7 @@ export const btcEdgeToTtd = (btcEdge) => ({
 export const balancesToTtd = (balances) => ({
   ...balances,
   btcWalletValueInUsd: balances.btcWalletValueInUsd,
-  usdWalletBalance: balances.usdWalletBalance * TTD_USD_RATE,
+  usdWalletBalance: applyTtdPrecision(balances.usdWalletBalance * TTD_USD_RATE),
 })
 
 export const currencyFromTxn = (txn) => txn.node.settlementCurrency

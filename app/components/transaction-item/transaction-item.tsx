@@ -14,6 +14,7 @@ import { satAmountDisplay, usdAmountDisplay } from "@app/utils/currencyConversio
 import { GaloyGQL } from "@galoymoney/client"
 import { WalletCurrency } from "@app/types/amounts"
 import { WalletType } from "@app/utils/enum"
+import { applyTtdPrecisionOnUsd } from "@app/utils/ttd"
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import { TransactionDate } from "../transaction-date"
 
@@ -71,7 +72,7 @@ const computeUsdAmount = (tx: GaloyGQL.Transaction) => {
   const { settlementAmount, settlementPrice } = tx
   const { base, offset } = settlementPrice
   const usdPerSat = base / 10 ** offset / 100
-  return settlementAmount * usdPerSat
+  return applyTtdPrecisionOnUsd(settlementAmount * usdPerSat)
 }
 
 const descriptionDisplay = (tx: GaloyGQL.Transaction) => {

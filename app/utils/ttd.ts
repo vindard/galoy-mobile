@@ -1,5 +1,6 @@
 export const TTD_USD_RATE = 6.8
 export const applyTtdPrecision = (amount) => Math.round(amount / 10) * 10
+export const applyTtdPrecisionOnUsd = (amount) => Math.round(amount * 10) / 10
 
 export const TTD_LABEL = "TTD"
 export const FIAT_WALLET_NAME = "TT Dollar Wallet"

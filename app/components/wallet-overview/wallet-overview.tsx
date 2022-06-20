@@ -52,6 +52,8 @@ const styles = EStyleSheet.create({
     justifyContent: "center",
   },
   textSecondary: {
+    marginLeft: 5,
+    paddingTop: 2,
     fontSize: 10,
     color: palette.darkGrey,
   },
@@ -142,15 +144,26 @@ const WalletOverview = ({
           style={styles.textLeft}
         >
           <TextCurrencyForAmount
-            amount={btcWalletValueInUsd}
-            currency={"USD"}
-            style={styles.textPrimary}
-          />
-          <TextCurrencyForAmount
             amount={btcWalletBalance}
             currency={"BTC"}
-            style={styles.textSecondary}
+            style={
+              btcWalletBalance < 100_000
+                ? styles.textPrimary
+                : btcWalletBalance < 1_000_000
+                ? { ...styles.textPrimary, fontSize: styles.textPrimary.fontSize - 2 }
+                : btcWalletBalance < 10_000_000
+                ? { ...styles.textPrimary, fontSize: styles.textPrimary.fontSize - 3 }
+                : btcWalletBalance < 100_000_000
+                ? { ...styles.textPrimary, fontSize: styles.textPrimary.fontSize - 5 }
+                : { ...styles.textPrimary, fontSize: styles.textPrimary.fontSize - 6 }
+            }
             satsIconSize={14}
+            satsSuffix={false}
+          />
+          <TextCurrencyForAmount
+            amount={btcWalletValueInUsd}
+            currency={"USD"}
+            style={styles.textSecondary}
           />
         </HidableArea>
       </View>

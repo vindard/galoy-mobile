@@ -4,7 +4,11 @@ import type { ComponentType } from "../../types/jsx"
 import { palette } from "@app/theme"
 import SatsIcon from "../../assets/icons/sat.svg"
 import EStyleSheet from "react-native-extended-stylesheet"
-import { satAmountDisplay, usdAmountDisplay } from "@app/utils/currencyConversion"
+import {
+  satAltAmountDisplay,
+  satAmountDisplay,
+  usdAmountDisplay,
+} from "@app/utils/currencyConversion"
 type Props = {
   amount: number
   currency: CurrencyType
@@ -28,7 +32,8 @@ export const TextCurrencyForAmount: ComponentType = ({
   style,
   satsIconSize,
   iconColor = palette.black,
-}: Props) => {
+  satsSuffix = true,
+}: Props & { satsSuffix: boolean }) => {
   if (currency === "USD") {
     const amountDisplay = Number.isNaN(amount) ? "..." : usdAmountDisplay(amount)
     return <Text style={style}>{amountDisplay}</Text>
@@ -42,7 +47,9 @@ export const TextCurrencyForAmount: ComponentType = ({
           // @ts-expect-error: fill
           style={{ fill: iconColor, width: satsIconSize, height: satsIconSize }}
         />
-        <Text style={style}>{satAmountDisplay(amount)}</Text>
+        <Text style={style}>
+          {satsSuffix ? satAmountDisplay(amount) : satAltAmountDisplay(amount)}
+        </Text>
       </View>
     )
   }

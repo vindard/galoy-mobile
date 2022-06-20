@@ -134,3 +134,12 @@ export const satAmountDisplay = (amount: number): string => {
       .format() + " sats"
   )
 }
+
+export const satAltAmountDisplay = (amount: number): string =>
+  currencyFmt
+    .default(amount, {
+      precision: 0,
+      separator: ",",
+      symbol: "",
+    })
+    .format()

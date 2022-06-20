@@ -1,4 +1,4 @@
-package com.btcbacchanal;
+package com.galoyappfreecorn;
 
 import android.os.Bundle;
 

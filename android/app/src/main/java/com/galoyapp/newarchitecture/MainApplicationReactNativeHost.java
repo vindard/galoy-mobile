@@ -1,4 +1,4 @@
-package com.galoyapp.newarchitecture;
+package com.btcbacchanal.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.galoyapp.BuildConfig;
-import com.galoyapp.newarchitecture.components.MainComponentsRegistry;
-import com.galoyapp.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.btcbacchanal.BuildConfig;
+import com.btcbacchanal.newarchitecture.components.MainComponentsRegistry;
+import com.btcbacchanal.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 /**

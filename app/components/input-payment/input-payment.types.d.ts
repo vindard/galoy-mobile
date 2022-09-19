@@ -1,4 +1,4 @@
-type CurrencyType = "USD" | "BTC"
+type CurrencyType = "USD" | "BTC" | "TTD"
 
 type MoneyAmount = {
   value: number

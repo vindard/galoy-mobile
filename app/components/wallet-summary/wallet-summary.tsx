@@ -1,6 +1,7 @@
 import { palette } from "@app/theme"
 import { satAmountDisplay, usdAmountDisplay } from "@app/utils/currencyConversion"
 import { WalletType } from "@app/utils/enum"
+import { FIAT_WALLET_NAME } from "@app/utils/ttd"
 import React, { FunctionComponent } from "react"
 import { Text, View } from "react-native"
 import EStyleSheet from "react-native-extended-stylesheet"
@@ -54,7 +55,7 @@ export const WalletSummary: FunctionComponent<WalletSummaryProps> = ({
       : {
           currencyName: "USD",
           currencyColor: palette.usdPrimary,
-          walletName: "US Dollar Wallet",
+          walletName: FIAT_WALLET_NAME,
         }
 
   const formattedUsdAmount = usdAmountDisplay(usdBalanceInDollars)

@@ -20,6 +20,7 @@ import { WalletDescriptor } from "@app/types/wallets"
 import { StackScreenProps } from "@react-navigation/stack"
 import { RootStackParamList } from "@app/navigation/stack-param-lists"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { applyTtdPrecision, FIAT_WALLET_NAME, TTD_LABEL } from "@app/utils/ttd"
 
 export const ConversionDetailsScreen = ({
   route,
@@ -115,7 +116,7 @@ export const ConversionDetailsScreen = ({
       setActiveCurrencyInput(WalletCurrency.BTC)
     }
     if (fromWallet.currency === WalletCurrency.USD) {
-      setAmountsWithUsd(Math.floor((usdWalletBalance * percentage) / 100))
+      setAmountsWithUsd(Math.floor(applyTtdPrecision(usdWalletBalance * percentage) / 100))
       setActiveCurrencyInput(WalletCurrency.USD)
     }
   }
@@ -174,7 +175,7 @@ export const ConversionDetailsScreen = ({
               {fromWallet.currency === WalletCurrency.BTC ? (
                 <Text style={styles.walletSelectorTypeLabelBtcText}>BTC</Text>
               ) : (
-                <Text style={styles.walletSelectorTypeLabelUsdText}>USD</Text>
+                <Text style={styles.walletSelectorTypeLabelUsdText}>{TTD_LABEL}</Text>
               )}
             </View>
           </View>
@@ -186,7 +187,7 @@ export const ConversionDetailsScreen = ({
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>
@@ -232,7 +233,7 @@ export const ConversionDetailsScreen = ({
               {toWallet.currency === WalletCurrency.BTC ? (
                 <Text style={styles.walletSelectorTypeLabelBtcText}>BTC</Text>
               ) : (
-                <Text style={styles.walletSelectorTypeLabelUsdText}>USD</Text>
+                <Text style={styles.walletSelectorTypeLabelUsdText}>{TTD_LABEL}</Text>
               )}
             </View>
           </View>
@@ -244,7 +245,7 @@ export const ConversionDetailsScreen = ({
                 </>
               ) : (
                 <>
-                  <Text style={styles.walletTypeText}>US Dollar Wallet</Text>
+                  <Text style={styles.walletTypeText}>{FIAT_WALLET_NAME}</Text>
                 </>
               )}
             </View>
@@ -293,7 +294,8 @@ export const ConversionDetailsScreen = ({
                     prefix="$"
                     delimiter=","
                     separator="."
-                    precision={2}
+                    precision={1}
+                    suffix="0"
                     editable={false}
                     style={styles.convertedAmountText}
                   />
@@ -308,7 +310,8 @@ export const ConversionDetailsScreen = ({
                     prefix="$"
                     delimiter=","
                     separator="."
-                    precision={2}
+                    precision={1}
+                    suffix="0"
                     style={styles.walletBalanceInput}
                     minValue={0}
                   />
@@ -331,7 +334,8 @@ export const ConversionDetailsScreen = ({
                 prefix="$"
                 delimiter=","
                 separator="."
-                precision={2}
+                precision={1}
+                suffix="0"
                 style={styles.walletBalanceInput}
                 minValue={0}
               />

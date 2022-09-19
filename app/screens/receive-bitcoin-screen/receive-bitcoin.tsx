@@ -4,6 +4,8 @@ import { RootStackParamList } from "@app/navigation/stack-param-lists"
 import { palette } from "@app/theme"
 import { WalletCurrency } from "@app/types/amounts"
 import { StackScreenProps } from "@react-navigation/stack"
+import { TTD_LABEL } from "@app/utils/ttd"
+
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import EStyleSheet from "react-native-extended-stylesheet"
@@ -118,7 +120,7 @@ const ReceiveBitcoinScreen = ({
                   : styles.inactiveTabText
               }
             >
-              USD
+              {TTD_LABEL}
             </Text>
           </View>
         </TouchableWithoutFeedback>

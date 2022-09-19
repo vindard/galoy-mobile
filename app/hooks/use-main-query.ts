@@ -6,6 +6,8 @@ import crashlytics from "@react-native-firebase/crashlytics"
 import { useAppConfig } from "./use-app-config"
 import { usePriceConversion } from "./use-price-conversion"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { WalletCurrency } from "@app/types/amounts"
+import { btcEdgeToTtd, currencyFromTxn, usdEdgeToTtd } from "@app/utils/ttd"
 
 const useMainQuery = (): useMainQueryOutput => {
   const { hasToken } = useToken()
@@ -71,6 +73,16 @@ const useMainQuery = (): useMainQueryOutput => {
   const mobileVersions = data?.mobileVersions
   const mergedTransactions = me.defaultAccount?.transactions.edges
 
+  const txnsToTtd = (txns) => {
+    return txns === undefined
+      ? undefined
+      : txns.map((txn) => {
+          return currencyFromTxn(txn) === WalletCurrency.BTC
+            ? btcEdgeToTtd(txn)
+            : usdEdgeToTtd(txn)
+        })
+  }
+
   const initialBtcPrice = data?.btcPrice
 
   return {
@@ -82,7 +94,7 @@ const useMainQuery = (): useMainQueryOutput => {
     usdWalletId,
     defaultWalletId,
     defaultWallet,
-    mergedTransactions,
+    mergedTransactions: txnsToTtd(mergedTransactions),
     wallets,
     me,
     myPubKey,

@@ -14,6 +14,8 @@ import { palette } from "../../theme/palette"
 import { sameDay, sameMonth } from "../../utils/date"
 import { toastShow } from "../../utils/toast"
 import { useI18nContext } from "@app/i18n/i18n-react"
+import { btcEdgeToTtd, currencyFromTxn, usdEdgeToTtd } from "@app/utils/ttd"
+import { WalletCurrency } from "@app/types/amounts"
 
 const styles = EStyleSheet.create({
   errorText: { alignSelf: "center", color: palette.red, paddingBottom: 18 },
@@ -92,6 +94,10 @@ export const TransactionHistoryScreenDataInjected: ScreenType = ({
     )
   }
 
+  const remapEdges = (edges) => {
+    return edges.map((txn) => (currencyFromTxn(txn) === WalletCurrency.BTC ? btcEdgeToTtd(txn) : usdEdgeToTtd(txn)))
+  }
+
   const { edges, pageInfo } = data.me.defaultAccount.transactions
   const lastDataCursor = edges.length > 0 ? edges[edges.length - 1].cursor : null
   let lastSeenCursor =
@@ -101,7 +107,7 @@ export const TransactionHistoryScreenDataInjected: ScreenType = ({
 
   // Add page of data to the source of truth if the data is new
   if (lastSeenCursor !== lastDataCursor) {
-    transactionsRef.current = transactionsRef.current.concat(edges)
+    transactionsRef.current = transactionsRef.current.concat(remapEdges(edges))
     lastSeenCursor = lastDataCursor
   }
 

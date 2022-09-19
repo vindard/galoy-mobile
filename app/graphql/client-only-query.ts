@@ -4,6 +4,7 @@ import analytics from "@react-native-firebase/analytics"
 
 import type { INetwork } from "../types/network"
 import { loadString } from "../utils/storage"
+import { TTD_LABEL } from "../utils/ttd"
 import { decodeToken, TOKEN_KEY } from "../hooks/use-token"
 
 export const authTokenVar = makeVar<TokenPayload | null>(null)
@@ -22,11 +23,11 @@ export const loadAuthToken = async (): Promise<void> => {
 
 export const networkVar = makeVar<INetwork | null>(null)
 
-export const prefCurrencyVar = makeVar<CurrencyType>("USD")
+export const prefCurrencyVar = makeVar<CurrencyType>("BTC")
 export const modalClipboardVisibleVar = makeVar(false)
 
 export const nextPrefCurrency = (): void => {
-  const units: CurrencyType[] = ["BTC", "USD"]
+  const units: CurrencyType[] = [TTD_LABEL, "BTC"]
   const currentIndex = indexOf(units, prefCurrencyVar())
   prefCurrencyVar(units[(currentIndex + 1) % units.length])
 }
